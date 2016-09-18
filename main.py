@@ -19,7 +19,7 @@ def callback_inline(call):
       markupen.add(types.InlineKeyboardButton("Change language", callback_data="cl")
       bot.edit_message_text(chat_id=call.message.chat.id, message_id=call.message.message_id, text="***TEXT***"parse_mode="Markdown",reply_markup=markupen)
   if call.message:
-    if call.data == 'cl':' # Change language English
+    if call.data == 'cl':'
     markupcl = types.InlineKeayboardButton()
     markupcl.add(types.InlineKeyboardButton('English', callback_data='English'),types.InlineKeyboardButton("فارسی",callback_data='Persian'))
     bot.edit_message_text(chat_id=call.message.chat.id, message_id=call.message.message_id, text="***TEXT***"parse_mode="Markdown",reply_markup=markupcl)
@@ -33,3 +33,12 @@ def callback_inline(call):
         markupclfa = types.InlineKeyboardButton()
         markupclfa.add(types.InlineKeyboardButton('English', callback_data='English'),types.InlineKeyboardButton("فارسی",callback_data='Persian'))
         bot.edit_message_text(chat_id=call.message.chat.id, message_id=call.message.message_id, text="***TEXT***"parse_mode="Markdown",reply_markup=markupclfa)
+        
+@bot.message_handler(func=lambda m: True)
+def echo_all(message):
+  a-z = [a,b,c,d,e,f,g,h,i,j,k,l,m,n,o,p,q,r,s,t,u,v,w,x,y,z]
+  A-Z = [A,B,C,D,E,F,G,H,I,J,K,L,M,N,O,P,Q,R,S,T,U,V,W,X,Y,Z]
+  if message.txt == 'a-z' or 'A-Z':
+    bot.reply_to(message, message.text)
+
+bot.polling()
