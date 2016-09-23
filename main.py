@@ -23,3 +23,4 @@ def start_callback(call):
 			markup1 = types.InlineKeyboardMarkup()
 			markup1.add(types.InlineKeyboardButton('\xE2\x97\x80\xEF\xB8\x8F Return', callback_data='back'))
 			bot.edit_message_text(chat_id=call.message.chat.id, message_id=call.message.message_id, text="***ENGLISH TEXT***",parse_mode="Markdown", reply_markup=markup)
+			#bot.answer_callback_query(callback_query_id=call.id, show_alert=False, text=":|")
