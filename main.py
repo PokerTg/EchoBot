@@ -1,44 +1,25 @@
+#-*- coding: utf-8-*-
 import telebot
 from telebot import types
+import time
+from time import sleep
+import json
+reload(sys)
 sys.setdefaultencoding("utf-8")
 
 bot = telebot.TeleBot("***TOKEN***")
 
-@bot.message_handler(commands=['start','lang'])
+@bot.message_handler(commands=['start'])
 def start(m):
-  cid = m.chat.id
-  markup = types.InlineKeyboardButton()
-  markup.add(types.InlineKeyboardButton('English', callback_data='English'),types.InlineKeyboardButton("فارسی",callback_data='Persian'))
-  bot.send_message(cid, '***TEXT***',reply_markup=markup,parse_mode="Markdown")
-  
-@bot.callback_query_handler(func=lambda call:True)
-def callback_inline(call):
-  if call.message:
-    if call.data == 'English':
-      markupen = types.InlineKeyboardButton()
-      markupen.add(types.InlineKeyboardButton("Change language", callback_data="cl")
-      bot.edit_message_text(chat_id=call.message.chat.id, message_id=call.message.message_id, text="***TEXT***"parse_mode="Markdown",reply_markup=markupen)
-  if call.message:
-    if call.data == 'cl':'
-    markupcl = types.InlineKeayboardButton()
-    markupcl.add(types.InlineKeyboardButton('English', callback_data='English'),types.InlineKeyboardButton("فارسی",callback_data='Persian'))
-    bot.edit_message_text(chat_id=call.message.chat.id, message_id=call.message.message_id, text="***TEXT***"parse_mode="Markdown",reply_markup=markupcl)
-  if call.message:
-    if call.data == 'Persian':
-      markuppe = types.InlineKeyboardButton()
-      markuppe.add(types.InlineKeyboardButton('***Cl fa***', callback_data="clfa")
-      bot.edit_message_text(chat_id=call.message.chat.id, message_id=call.message.message_id, text="***TEXT***"parse_mode="Markdown",reply_markup=markuppe)
-    if call.message:
-      if call.data == 'clfa':
-        markupclfa = types.InlineKeyboardButton()
-        markupclfa.add(types.InlineKeyboardButton('English', callback_data='English'),types.InlineKeyboardButton("فارسی",callback_data='Persian'))
-        bot.edit_message_text(chat_id=call.message.chat.id, message_id=call.message.message_id, text="***TEXT***"parse_mode="Markdown",reply_markup=markupclfa)
-        
-@bot.message_handler(func=lambda m: True)
-def echo_all(message):
-  a-z = [a,b,c,d,e,f,g,h,i,j,k,l,m,n,o,p,q,r,s,t,u,v,w,x,y,z]
-  A-Z = [A,B,C,D,E,F,G,H,I,J,K,L,M,N,O,P,Q,R,S,T,U,V,W,X,Y,Z]
-  if message.txt == 'a-z' or 'A-Z':
-    bot.reply_to(message, message.text)
+    cid = m.chat.id
+	markup = types.InlineKeyboardMarkup()
+	markup.add(types.InlineKeyboardButton('English', callback_data='English'),types.InlineKeyboardButton("فارسی", callback_data='Persian'))
+	bot.send_message(cid, '*Choose your language:*\n\n*زبان خود را انتخاب کنید:*', parse_mode="Markdown",reply_markup=markup)
 
-bot.polling()
+@bot.callback_query_handler(func=lambda call: True)
+def start_callback(call):
+	if call.message:
+		if call.data == 'Englsih':
+			markup1 = types.InlineKeyboardMarkup()
+			markup1.add(types.InlineKeyboardButton('\xE2\x97\x80\xEF\xB8\x8F Return', callback_data='back'))
+			bot.edit_message_text(chat_id=call.message.chat.id, message_id=call.message.message_id, text="***ENGLISH TEXT***",parse_mode="Markdown", reply_markup=markup)
